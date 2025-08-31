@@ -1,0 +1,41 @@
+pipeline {
+ agent any
+ environment {
+ AWS_REGION = "us-east-1"
+ ECR_REPO = "your_account_id.dkr.ecr.us-east-1.amazonaws.com/flask-app"
+ }
+ stages {
+ stage('Checkout') {
+ steps {
+ git 'https://github.com/your-org/flask-app-repo.git'
+ }
+ }
+ stage('Build Docker Image') {
+ steps {
+ sh 'docker build -t $ECR_REPO:$BUILD_NUMBER .'
+ }
+ }
+ stage('Push to ECR') {
+ steps {
+ sh '''
+ aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $ECR_R docker push $ECR_REPO:$BUILD_NUMBER
+ '''
+ }
+ }
+ stage('Terraform Deploy') {
+ steps {
+ sh '''
+ cd infra
+ terraform init
+ terraform apply -auto-approve -var="app_image=$ECR_REPO:$BUILD_NUMBER"
+ '''
+ }
+ }
+ stage('CodeDeploy ECS Blue-Green') {
+ steps {
+ sh '''
+ aws deploy create-deployment --application-name flask-app-codedeploy --deployment-group-name  '''
+ }
+ }
+ }
+}
