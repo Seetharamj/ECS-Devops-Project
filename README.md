@@ -3,24 +3,6 @@
 This project demonstrates an end-to-end DevOps pipeline for deploying a containerized Flask application on AWS ECS Fargate using Blue-Green deployments via CodeDeploy.
 It integrates Terraform for infrastructure as code, Jenkins for CI/CD automation, and Docker for containerization, ensuring zero-downtime deployments and multi-environment support.
 
-# 📂 Project Structure
-ecs/
-│  ├─ main.tf              # ECS Cluster, Service, Task Definition
-│  ├─ variables.tf
-│  └─ outputs.tf
-codedeploy/
-│  ├─ main.tf              # CodeDeploy App + Deployment Group
-│  ├─ variables.tf
-│  └─ outputs.tf
-jenkins/
-│  ├─ Jenkinsfile          # CI/CD pipeline
-│  └─ codedeploy/
-│     ├─ appspec.yaml      # Deployment hooks
-│     └─ taskdef.json.tpl  # ECS Task Definition template
-app/
-│  ├─ app.py               # Flask app
-│  └─ Dockerfile
-README.md
 
 # ⚙️ Features
 
@@ -102,19 +84,6 @@ Configure Terraform backend & variables
 Run pipeline in Jenkins
 
 Access the app via ALB DNS
-
-# 📊 Architecture
-[ Developer ] → [ GitHub ] → [ Jenkins Pipeline ]
-                  ↓
-     [ Docker Build ] → [ AWS ECR ]
-                  ↓
-         [ Terraform Apply ]
-                  ↓
-     [ ECS Fargate + ALB + CodeDeploy ]
-                  ↓
-       [ Blue/Green Deployment ]
-                  ↓
-      [ Zero-Downtime App Access ]
 
 # 📌 Future Enhancements
 
