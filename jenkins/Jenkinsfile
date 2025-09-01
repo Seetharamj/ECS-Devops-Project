@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         AWS_REGION = "us-east-1"
-        ECR_REPO   = "your_account_id.dkr.ecr.us-east-1.amazonaws.com/flask-app"
+        ECR_REPO   = "433349222941.dkr.ecr.us-east-1.amazonaws.com/flask-app"
     }
     stages {
         stage('Checkout') {
