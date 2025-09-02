@@ -43,6 +43,7 @@ module "ecs" {
   cluster_name = "my-ecs-cluster"
   service_name     = "my-ecs-service"
   vpc_id           = var.vpc_id
+  execution_role_arn = var.execution_role_arn
   public_subnet_ids  = module.networking.public_subnet_ids  
   target_group_arn = module.alb.blue_target_group_arn
   container_port   = var.container_port
