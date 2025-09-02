@@ -9,7 +9,7 @@ variable "region" {
 
 variable "state_bucket" {
   type    = string
-  default = "my-tf-state-1234"  # Change this to a globally unique bucket name
+  default = "my-tf-state-9842"  
 }
 
 variable "lock_table" {
