@@ -61,11 +61,15 @@ variable "sg_id" {
   type        = string
 }
 
-# ALB variables
 variable "subnets" {
   description = "List of public subnet IDs for the ALB"
   type        = list(string)
+  default     = [
+    "subnet-0abcd1234efgh5678", 
+    "subnet-0abcd1234ijkl9012"   
+  ]
 }
+
 
 variable "alb_name" {
   description = "Name of the Application Load Balancer"
