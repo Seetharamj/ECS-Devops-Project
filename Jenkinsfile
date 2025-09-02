@@ -7,7 +7,11 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-              git branch: 'main', url: 'https://github.com/Seetharamj/ECS-Devops-Project.git'
+             git(
+            url: 'https://github.com/Seetharamj/ECS-Devops-Project.git',
+            branch: 'main',
+            credentialsId: 'github-creds'
+        )
             }
         }
 
