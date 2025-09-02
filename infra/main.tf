@@ -73,6 +73,7 @@ module "ecs" {
   desired_count    = var.desired_count
   app_health_check = var.app_health_check
   alb_sg_id         = module.alb.sg_id 
+  sg_id             = aws_security_group.ecs_sg.id 
   app_image        = var.app_image
 }
 
