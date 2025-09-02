@@ -27,20 +27,31 @@ source = "./modules/ecr"
 name = var.name
 }
 
+module "alb" {
+  source       = "./modules/alb"
+  vpc_id       = var.vpc_id
+  subnets      = var.public_subnet_ids
+  alb_name     = "my-flask-alb"
+  listener_port = 80
+  target_group_port = 80
+  health_check_path = "/"
+}
+
 module "ecs" {
   source           = "./modules/ecs"
-  name             = var.name       
-  cluster_name  = "my-ecs-cluster"
+  name             = var.name
+  cluster_name = "my-ecs-cluster"
   service_name     = "my-ecs-service"
-  vpc_id            = var.vpc_id
-  public_subnet_ids = module.networking.public_subnet_ids  
-  target_group_arn  = module.alb.blue_target_group_arn  
+  vpc_id           = var.vpc_id
+  public_subnet_ids  = module.networking.public_subnet_ids  
+  target_group_arn = module.alb.blue_target_group_arn
   container_port   = var.container_port
   desired_count    = var.desired_count
   app_health_check = var.app_health_check
   sg_id            = var.sg_id
   app_image        = var.app_image
 }
+
 
 
 
