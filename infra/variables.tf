@@ -8,23 +8,13 @@ variable "region" {
   default = "ap-south-1"
 }
 
-variable "vpc_cidr" {
-  type    = string
-  default = "10.0.0.0/16"
-}
-
-variable "public_subnet_cidrs" {
-  type    = list(string)
-  default = ["10.0.1.0/24", "10.0.2.0/24"]
-}
-
 variable "vpc_id" {
-  description = "VPC ID"
+  description = "VPC ID for ECS and ALB"
   type        = string
 }
 
 variable "public_subnet_ids" {
-  description = "Public subnet IDs"
+  description = "List of public subnet IDs"
   type        = list(string)
 }
 
@@ -65,30 +55,26 @@ variable "sg_id" {
   type        = string
 }
 
-variable "ecr_repo_url" {
-  description = "ECR repository URL for the app image"
-  type        = string
+# ALB variables
+variable "subnets" {
+  description = "List of public subnet IDs for the ALB"
+  type        = list(string)
 }
 
-
-variable "target_group_blue" {
+variable "alb_name" {
+  description = "Name of the Application Load Balancer"
   type        = string
-  default     = "blue-tg"
-  description = "Name of blue target group"
+  default     = "my-alb"
 }
 
-variable "target_group_green" {
-  type        = string
-  default     = "green-tg"
-  description = "Name of green target group"
+variable "listener_port" {
+  description = "Port for the ALB listener"
+  type        = number
+  default     = 80
 }
 
-variable "listener_arn" {
+variable "protocol" {
+  description = "Protocol for the ALB listener"
   type        = string
-  description = "ARN of the ALB listener for CodeDeploy traffic routing"
-}
-
-variable "codedeploy_role_arn" {
-  type        = string
-  description = "IAM Role ARN for CodeDeploy to manage ECS"
+  default     = "HTTP"
 }
