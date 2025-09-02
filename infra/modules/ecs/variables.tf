@@ -13,6 +13,12 @@ variable "cluster_name" {
   description = "Name of the ECS cluster"
 }
 
+variable "service_name" {
+  type        = string
+  description = "Name of the ECS service"
+}
+
+
 variable "vpc_id" {
   type        = string
   description = "VPC ID for ECS tasks"
