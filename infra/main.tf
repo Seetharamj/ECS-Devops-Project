@@ -32,8 +32,8 @@ module "alb" {
   vpc_id  = var.vpc_id
   subnets = var.public_subnet_ids   
   alb_name = var.alb_name
+  listener_port = var.listener_port
   protocol = var.protocol
-  port     = var.listener_port
 }
 
 
