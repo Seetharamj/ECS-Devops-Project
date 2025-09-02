@@ -1,5 +1,13 @@
-output "alb_dns_name" {
-  value = aws_lb.app.dns_name
+output "alb_dns" {
+  value = module.alb.alb_dns_name   
+}
+
+output "target_group_arn" {
+  value = module.alb.blue_target_group_arn
+}
+
+output "listener_arn" {
+  value = module.alb.listener_arn
 }
 
 output "ecr_repository" { value = module.ecr.repository_url }
