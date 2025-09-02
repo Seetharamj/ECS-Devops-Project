@@ -1,11 +1,19 @@
-output "ecs_cluster_id" {
-  value = aws_ecs_cluster.this.id
+output "cluster_name" {
+  value = aws_ecs_cluster.this.name
 }
 
-output "ecs_service_name" {
+output "service_name" {
   value = aws_ecs_service.app.name
 }
 
-output "ecs_task_definition" {
-  value = aws_ecs_task_definition.app.arn
+output "listener_arn" {
+  value = aws_lb_listener.app.arn
+}
+
+output "blue_target_group_arn" {
+  value = aws_lb_target_group.blue.arn
+}
+
+output "green_target_group_arn" {
+  value = aws_lb_target_group.green.arn
 }
