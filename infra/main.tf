@@ -41,11 +41,12 @@ ecr_repo_url = module.ecr.repository_url
 
 
 module "codedeploy" {
-source = "./modules/codedeploy"
-name = var.name
-ecs_cluster_name = module.ecs.cluster_name
-ecs_service_name = module.ecs.service_name
-listener_arn = module.ecs.listener_arn
-blue_tg_arn = module.ecs.blue_target_group_arn
-green_tg_arn = module.ecs.green_target_group_arn
+  source                  = "./modules/codedeploy"
+  app_name                = "flask-app-codedeploy"
+  ecs_cluster_name        = module.ecs.cluster_name
+  ecs_service_name        = module.ecs.service_name
+  listener_arn            = module.ecs.listener_arn
+  blue_target_group_arn   = module.ecs.blue_target_group_arn
+  green_target_group_arn  = module.ecs.green_target_group_arn
+  codedeploy_role_arn     = var.codedeploy_role_arn
 }
