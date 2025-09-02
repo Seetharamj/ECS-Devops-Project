@@ -8,17 +8,6 @@ variable "name" {
   description = "Name prefix for ECS resources"
 }
 
-variable "cluster_name" {
-  type        = string
-  description = "Name of the ECS cluster"
-}
-
-variable "service_name" {
-  type        = string
-  description = "Name of the ECS service"
-}
-
-
 variable "vpc_id" {
   type        = string
   description = "VPC ID for ECS tasks"
