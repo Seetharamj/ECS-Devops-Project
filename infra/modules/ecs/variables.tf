@@ -19,7 +19,13 @@ variable "desired_count" {
 }
 
 variable "app_health_check" {
-  type = string
+  type = object({
+    path                = string
+    healthy_threshold   = number
+    unhealthy_threshold = number
+    timeout             = number
+    interval            = number
+  })
 }
 
 variable "ecr_repo_url" {
@@ -27,5 +33,9 @@ variable "ecr_repo_url" {
 }
 
 variable "sg_id" {
+  type = string
+}
+
+variable "app_image" {
   type = string
 }
