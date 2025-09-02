@@ -28,14 +28,14 @@ name = var.name
 }
 
 module "alb" {
-  source       = "./modules/alb"
-  vpc_id       = var.vpc_id
-  subnets      = var.public_subnet_ids
-  alb_name     = "my-flask-alb"
-  listener_port = 80
-  target_group_port = 80
-  health_check_path = "/"
+  source    = "./modules/alb"
+  vpc_id    = var.vpc_id
+  subnets   = var.public_subnet_ids
+  alb_name  = var.alb_name
+  protocol  = var.protocol
+  port      = var.listener_port
 }
+
 
 module "ecs" {
   source           = "./modules/ecs"
