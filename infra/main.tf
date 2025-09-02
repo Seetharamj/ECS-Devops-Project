@@ -27,9 +27,6 @@ source = "./modules/ecr"
 name = var.name
 }
 
-
-
-
 module "ecs" {
   source            = "./modules/ecs"
   name              = var.name
@@ -40,5 +37,6 @@ module "ecs" {
   app_health_check  = var.app_health_check
   ecr_repo_url      = module.ecr.repository_url
   sg_id             = var.sg_id
-  app_image         = var.app_image   
+  app_image         = var.app_image
 }
+
