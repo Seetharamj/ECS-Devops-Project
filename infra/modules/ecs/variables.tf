@@ -10,6 +10,12 @@ variable "vpc_id" {
   type = string
 }
 
+variable "target_group_arn" {
+  description = "ARN of the target group for the ECS service"
+  type        = string
+}
+
+
 variable "public_subnet_ids" {
   type = list(string)
 }
