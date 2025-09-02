@@ -76,9 +76,9 @@ resource "aws_codedeploy_app" "ecs" {
 
 # CodeDeploy Deployment Group
 resource "aws_codedeploy_deployment_group" "ecs" {
-  app_name               = aws_codedeploy_app.ecs.name
-  deployment_group_name  = "flask-app-deploy-group"
-  service_role_arn       = var.codedeploy_role_arn
+  app_name              = aws_codedeploy_app.ecs.name
+  deployment_group_name = "flask-app-deploy-group"
+  service_role_arn      = var.codedeploy_role_arn
   deployment_config_name = "CodeDeployDefault.ECSAllAtOnce"
 
   ecs_service {
@@ -92,11 +92,11 @@ resource "aws_codedeploy_deployment_group" "ecs" {
         listener_arns = [var.listener_arn]
       }
 
-      target_groups {
+      target_group {
         name = aws_lb_target_group.blue.name
       }
 
-      target_groups {
+      target_group {
         name = aws_lb_target_group.green.name
       }
     }
