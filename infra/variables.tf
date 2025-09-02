@@ -22,6 +22,11 @@ variable "container_port" {
   type    = number
   default = 8080
 }
+variable "app_image" {
+  description = "Docker image to deploy"
+  type        = string
+}
+
 
 variable "desired_count" {
   type    = number
