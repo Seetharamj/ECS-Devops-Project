@@ -19,7 +19,7 @@ variable "vpc_id" {
 }
 
 variable "alb_sg_id" {
-  description = "Security Group ID of the ALB for ECS tasks"
+  description = "Security Group ID of the ALB"
   type        = string
 }
 
