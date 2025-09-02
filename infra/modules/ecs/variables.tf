@@ -18,14 +18,20 @@ variable "vpc_id" {
   description = "VPC ID for ECS tasks"
 }
 
-variable "subnets" {
+variable "public_subnet_ids" {
+  description = "List of public subnet IDs for ECS service"
   type        = list(string)
-  description = "List of subnets for ECS tasks"
 }
+
 
 variable "sg_id" {
   type        = string
   description = "Security group ID for ECS tasks"
+}
+
+variable "target_group_arn" {
+  description = "ARN of the target group for ECS service"
+  type        = string
 }
 
 variable "container_port" {
