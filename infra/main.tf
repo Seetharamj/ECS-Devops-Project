@@ -1,6 +1,6 @@
 terraform {
 backend "s3" {
-bucket = "my-tf-state-1234" # update after backend creation
+bucket = "my-tf-state-9843"
 key = "ecs-bluegreen/terraform.tfstate"
 region = "ap-south-1"
 dynamodb_table = "tf-locks"
