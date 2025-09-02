@@ -40,13 +40,15 @@ ecr_repo_url = module.ecr.repository_url
 }
 
 
-module "codedeploy" {
-  source                  = "./modules/codedeploy"
-  app_name                = "flask-app-codedeploy"
-  ecs_cluster_name        = module.ecs.cluster_name
-  ecs_service_name        = module.ecs.service_name
-  listener_arn            = module.ecs.listener_arn
-  blue_target_group_arn   = module.ecs.blue_target_group_arn
-  green_target_group_arn  = module.ecs.green_target_group_arn
-  codedeploy_role_arn     = var.codedeploy_role_arn
+module "ecs" {
+  source            = "./modules/ecs"
+  name              = var.name
+  vpc_id            = module.networking.vpc_id
+  public_subnet_ids = module.networking.public_subnet_ids
+  container_port    = var.container_port
+  desired_count     = var.desired_count
+  app_health_check  = var.app_health_check
+  ecr_repo_url      = module.ecr.repository_url
+  sg_id             = var.sg_id
+  app_image         = var.app_image   
 }
