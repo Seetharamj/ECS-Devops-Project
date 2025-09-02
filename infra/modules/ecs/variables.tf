@@ -18,6 +18,11 @@ variable "vpc_id" {
   description = "VPC ID for ECS tasks"
 }
 
+variable "alb_sg_id" {
+  description = "Security Group ID of the ALB for ECS tasks"
+  type        = string
+}
+
 variable "public_subnet_ids" {
   description = "List of public subnet IDs for ECS service"
   type        = list(string)
