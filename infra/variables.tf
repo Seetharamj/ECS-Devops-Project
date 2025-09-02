@@ -13,6 +13,12 @@ variable "vpc_id" {
   type        = string
 }
 
+variable "codedeploy_role_arn" {
+  description = "IAM Role ARN for CodeDeploy to manage ECS"
+  type        = string
+}
+
+
 variable "public_subnet_ids" {
   description = "List of public subnet IDs"
   type        = list(string)
