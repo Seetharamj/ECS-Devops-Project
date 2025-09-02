@@ -9,3 +9,8 @@ output "blue_target_group_arn" {
 output "listener_arn" {
   value = aws_lb_listener.app.arn
 }
+
+output "sg_id" {
+  value = aws_security_group.alb_sg.id
+}
+
