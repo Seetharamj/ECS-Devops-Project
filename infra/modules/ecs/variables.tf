@@ -28,6 +28,10 @@ variable "sg_id" {
   type        = string
   description = "Security group ID for ECS tasks"
 }
+variable "execution_role_arn" {
+  description = "ECS Task Execution Role ARN"
+  type        = string
+}
 
 variable "target_group_arn" {
   description = "ARN of the target group for ECS service"
