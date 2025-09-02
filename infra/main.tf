@@ -29,6 +29,7 @@ name = var.name
 
 module "ecs" {
   source            = "./modules/ecs"
+  cluster_name  = var.name 
   name              = var.name
   region            = var.region
   vpc_id            = module.networking.vpc_id
