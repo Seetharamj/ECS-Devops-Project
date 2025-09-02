@@ -28,13 +28,13 @@ resource "aws_ecs_service" "app" {
   launch_type     = "FARGATE"
 
   network_configuration {
-    subnets          = var.public_subnet_ids
+    subnets = var.public_subnet_ids
     assign_public_ip = true
     security_groups  = [var.sg_id]
   }
 
   load_balancer {
-    target_group_arn = var.target_group_arn
+   target_group_arn = var.target_group_arn
     container_name   = var.name
     container_port   = var.container_port
   }
