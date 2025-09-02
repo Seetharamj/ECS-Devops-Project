@@ -14,6 +14,12 @@ variable "public_subnet_ids" {
   type = list(string)
 }
 
+variable "cluster_name" {
+  type = string
+  description = "Name of the ECS cluster"
+}
+
+
 variable "container_port" {
   type = number
 }
