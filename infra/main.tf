@@ -33,7 +33,7 @@ module "alb" {
   subnets = var.public_subnet_ids   
   alb_name = var.alb_name
   listener_port = var.listener_port
-  protocol = var.protocol
+
 }
 
 
