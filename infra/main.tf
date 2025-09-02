@@ -28,16 +28,6 @@ name = var.name
 }
 
 
-module "ecs" {
-source = "./modules/ecs"
-name = var.name
-vpc_id = module.networking.vpc_id
-public_subnet_ids = module.networking.public_subnet_ids
-container_port = var.container_port
-desired_count = var.desired_count
-app_health_check = var.app_health_check
-ecr_repo_url = module.ecr.repository_url
-}
 
 
 module "ecs" {
