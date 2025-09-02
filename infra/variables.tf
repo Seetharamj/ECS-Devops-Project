@@ -78,3 +78,13 @@ variable "protocol" {
   type        = string
   default     = "HTTP"
 }
+variable "ecr_repo_url" {
+  description = "ECR repository URL for the app image"
+  type        = string
+}
+
+variable "listener_arn" {
+  description = "ARN of the ALB listener for ECS"
+  type        = string
+}
+
