@@ -12,10 +12,6 @@ variable "alb_name" {
   description = "Name of the Application Load Balancer"
   type        = string
 }
-variable "alb_dns_name" {
-  type        = string
-  description = "DNS name of the ALB"
-}
 
 variable "listener_port" {
   description = "Port for the ALB listener"
