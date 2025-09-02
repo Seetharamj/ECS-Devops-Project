@@ -17,6 +17,10 @@ variable "codedeploy_role_arn" {
   description = "IAM Role ARN for CodeDeploy to manage ECS"
   type        = string
 }
+variable "execution_role_arn" {
+  description = "IAM Role ARN for ECS task execution (pull images from ECR, CloudWatch logs)"
+  type        = string
+}
 
 
 variable "public_subnet_ids" {
