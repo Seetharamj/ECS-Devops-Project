@@ -29,10 +29,6 @@ variable "public_subnet_ids" {
 }
 
 
-variable "sg_id" {
-  type        = string
-  description = "Security group ID for ECS tasks"
-}
 variable "execution_role_arn" {
   description = "ECS Task Execution Role ARN"
   type        = string
