@@ -30,7 +30,8 @@ name = var.name
 module "ecs" {
   source           = "./modules/ecs"
   name             = var.name             
-  cluster_name     = "my-ecs-cluster"     
+  cluster_name     = "my-ecs-cluster"   
+  service_name     = "my-ecs-service"
   vpc_id           = module.networking.vpc_id
   subnets          = module.networking.public_subnet_ids
   container_port   = var.container_port
