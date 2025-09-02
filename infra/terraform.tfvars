@@ -1,4 +1,4 @@
-vpc_id = "vpc-09aada87941ea18aa "
+vpc_id = "vpc-09aada87941ea18aa"
 public_subnet_ids = ["subnet-02016a31039f34970", "subnet-0c78f19d5e8453439"]
 sg_id = "sg-0264d96f21e2baeb1"
 execution_role_arn = "arn:aws:iam::433349222941:role/ecsExecutionRole"
