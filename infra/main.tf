@@ -72,7 +72,7 @@ module "ecs" {
   container_port   = var.container_port
   desired_count    = var.desired_count
   app_health_check = var.app_health_check
-  sg_id = aws_security_group.ecs_sg.id
+  sg_id = aws_security_group.ecs_sg.id 
   alb_sg_id         = module.alb.sg_id 
   app_image        = var.app_image
 }
