@@ -1,37 +1,37 @@
-variable "name" {
-  type = string
-}
-
-variable "region" {
-  type = string
+variable "service_name" {
+  type        = string
+  description = "Name of the ECS service"
 }
 
 variable "vpc_id" {
-  type = string
-}
-
-variable "target_group_arn" {
-  description = "ARN of the target group for the ECS service"
   type        = string
+  description = "VPC ID for ECS tasks"
 }
 
-
-variable "public_subnet_ids" {
-  type = list(string)
+variable "subnets" {
+  type        = list(string)
+  description = "List of subnets for ECS tasks"
 }
 
-variable "cluster_name" {
-  type = string
-  description = "Name of the ECS cluster"
+variable "sg_id" {
+  type        = string
+  description = "Security group ID for ECS tasks"
 }
-
 
 variable "container_port" {
-  type = number
+  type        = number
+  description = "Port for ECS container"
 }
 
 variable "desired_count" {
-  type = number
+  type        = number
+  default     = 2
+  description = "Number of ECS tasks"
+}
+
+variable "app_image" {
+  type        = string
+  description = "Docker image for ECS container"
 }
 
 variable "app_health_check" {
@@ -42,16 +42,11 @@ variable "app_health_check" {
     timeout             = number
     interval            = number
   })
-}
-
-variable "ecr_repo_url" {
-  type = string
-}
-
-variable "sg_id" {
-  type = string
-}
-
-variable "app_image" {
-  type = string
+  default = {
+    path                = "/health"
+    healthy_threshold   = 2
+    unhealthy_threshold = 5
+    timeout             = 5
+    interval            = 15
+  }
 }
