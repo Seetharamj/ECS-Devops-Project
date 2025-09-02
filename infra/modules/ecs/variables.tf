@@ -23,6 +23,12 @@ variable "alb_sg_id" {
   type        = string
 }
 
+variable "sg_id" {
+  description = "Security Group ID for ECS tasks"
+  type        = string
+}
+
+
 variable "public_subnet_ids" {
   description = "List of public subnet IDs for ECS service"
   type        = list(string)
