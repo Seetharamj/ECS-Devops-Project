@@ -28,16 +28,18 @@ name = var.name
 }
 
 module "ecs" {
-  source        = "./modules/ecs"
-  service_name  = var.name                       
-  vpc_id        = module.networking.vpc_id
-  subnets       = module.networking.public_subnet_ids
-  sg_id         = var.sg_id
-  container_port = var.container_port
-  desired_count = var.desired_count
-  app_image     = var.app_image
+  source           = "./modules/ecs"
+  name             = var.name             
+  cluster_name     = "my-ecs-cluster"     
+  vpc_id           = module.networking.vpc_id
+  subnets          = module.networking.public_subnet_ids
+  container_port   = var.container_port
+  desired_count    = var.desired_count
   app_health_check = var.app_health_check
+  sg_id            = var.sg_id
+  app_image        = var.app_image
 }
+
 
 
 
