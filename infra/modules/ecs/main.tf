@@ -3,22 +3,24 @@ resource "aws_ecs_cluster" "this" {
 }
 
 resource "aws_ecs_task_definition" "app" {
-  family                   = "${var.name}-task"
+  family                   = var.name
   network_mode             = "awsvpc"
   requires_compatibilities = ["FARGATE"]
   cpu                      = "256"
   memory                   = "512"
 
+  execution_role_arn       = var.execution_role_arn
+
   container_definitions = jsonencode([{
-    name      = var.name
-    image     = var.app_image
-    essential = true
+    name  = var.name
+    image = var.app_image
     portMappings = [{
       containerPort = var.container_port
       hostPort      = var.container_port
     }]
   }])
 }
+
 
 resource "aws_ecs_service" "app" {
   name            = "${var.name}-service"
