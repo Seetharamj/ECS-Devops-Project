@@ -2,16 +2,11 @@ provider "aws" {
   region = var.region
 }
 
-##########################
-# ECS Cluster
-##########################
 resource "aws_ecs_cluster" "this" {
   name = var.ecs_cluster_name
 }
 
-##########################
-# ECS Task Definition
-##########################
+
 resource "aws_ecs_task_definition" "app" {
   family                   = "flask-app-task"
   network_mode             = "awsvpc"
@@ -30,9 +25,7 @@ resource "aws_ecs_task_definition" "app" {
   }])
 }
 
-##########################
-# ALB Target Groups
-##########################
+
 resource "aws_lb_target_group" "blue" {
   name        = var.target_group_blue
   port        = 5000
@@ -49,9 +42,6 @@ resource "aws_lb_target_group" "green" {
   target_type = "ip"
 }
 
-##########################
-# ECS Service
-##########################
 resource "aws_ecs_service" "app" {
   name            = var.ecs_service_name
   cluster         = aws_ecs_cluster.this.id
@@ -76,17 +66,12 @@ resource "aws_ecs_service" "app" {
   }
 }
 
-##########################
-# CodeDeploy App
-##########################
+
 resource "aws_codedeploy_app" "ecs" {
   name             = "flask-app-codedeploy"
   compute_platform = "ECS"
 }
 
-##########################
-# CodeDeploy Deployment Group
-##########################
 resource "aws_codedeploy_deployment_group" "ecs" {
   app_name               = aws_codedeploy_app.ecs.name
   deployment_group_name  = "flask-app-deploy-group"
