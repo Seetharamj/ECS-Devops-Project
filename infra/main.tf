@@ -30,6 +30,7 @@ name = var.name
 module "ecs" {
   source            = "./modules/ecs"
   name              = var.name
+  region            = var.region
   vpc_id            = module.networking.vpc_id
   public_subnet_ids = module.networking.public_subnet_ids
   container_port    = var.container_port
@@ -39,4 +40,5 @@ module "ecs" {
   sg_id             = var.sg_id
   app_image         = var.app_image
 }
+
 
