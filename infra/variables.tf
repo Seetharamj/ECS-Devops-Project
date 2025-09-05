@@ -5,111 +5,45 @@ variable "name" {
 
 variable "region" {
   type    = string
-  default = "us-east-1"
+  default = "ap-south-1"
 }
 
 variable "vpc_id" {
+  type        = string
   description = "VPC ID for ECS and ALB"
-  type        = string
 }
-
-variable "codedeploy_role_arn" {
-  description = "IAM Role ARN for CodeDeploy to manage ECS"
-  type        = string
-}
-variable "execution_role_arn" {
-  description = "IAM Role ARN for ECS task execution (pull images from ECR, CloudWatch logs)"
-  type        = string
-}
-
 
 variable "public_subnet_ids" {
-  description = "List of public subnet IDs"
   type        = list(string)
+  description = "List of public subnet IDs"
 }
 
-variable "container_port" {
-  type    = number
-  default = 8080
+variable "execution_role_arn" {
+  type        = string
+  description = "IAM role ARN for ECS task execution"
 }
 
 variable "app_image" {
-  description = "Docker image for the ECS container"
   type        = string
+  description = "ECR image for ECS app"
+}
+
+variable "listener_arn" {
+  type        = string
+  description = "ALB Listener ARN"
+}
+
+variable "codedeploy_role_arn" {
+  type        = string
+  description = "CodeDeploy role ARN"
 }
 
 variable "desired_count" {
   type    = number
-  default = 2
+  default = 1
 }
 
-variable "app_health_check" {
-  type = object({
-    path                = string
-    healthy_threshold   = number
-    unhealthy_threshold = number
-    timeout             = number
-    interval            = number
-  })
-  default = {
-    path                = "/health"
-    healthy_threshold   = 2
-    unhealthy_threshold = 5
-    timeout             = 5
-    interval            = 15
-  }
+variable "container_port" {
+  type    = number
+  default = 80
 }
-
-variable "sg_id" {
-  description = "Security Group ID for ECS tasks"
-  type        = string
-}
-
-variable "subnets" {
-  description = "List of public subnet IDs for the ALB"
-  type        = list(string)
-  default     = [
-    "subnet-0abcd1234efgh5678", 
-    "subnet-0abcd1234ijkl9012"   
-  ]
-}
-
-variable "vpc_cidr" {
-  description = "CIDR block for the VPC"
-  type        = string
-  default     = "10.0.0.0/16"
-}
-
-variable "public_subnet_cidrs" {
-  description = "CIDR blocks for public subnets"
-  type        = list(string)
-  default     = ["10.0.1.0/24", "10.0.2.0/24"]
-}
-
-variable "alb_name" {
-  description = "Name of the Application Load Balancer"
-  type        = string
-  default     = "my-alb"
-}
-
-variable "listener_port" {
-  description = "Port for the ALB listener"
-  type        = number
-  default     = 80
-}
-
-variable "protocol" {
-  description = "Protocol for the ALB listener"
-  type        = string
-  default     = "HTTP"
-}
-variable "ecr_repo_url" {
-  description = "ECR repository URL for the app image"
-  type        = string
-}
-
-variable "listener_arn" {
-  description = "ARN of the ALB listener for ECS"
-  type        = string
-}
-
